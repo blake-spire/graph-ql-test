@@ -3,12 +3,16 @@ import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const MenuBar = () => {
-  const [activeItem, setActiveItem] = useState("");
+  // get url pathname without slash
+  const pathname = window.location.pathname;
+  const path = pathname === "/" ? "home" : pathname.substr(1);
+
+  const [activeItem, setActiveItem] = useState(path);
 
   const handleItemClick = (e, { name }) => setActiveItem(name);
 
   return (
-    <Menu pointing secondary>
+    <Menu pointing secondary size="massive" color="teal">
       <Menu.Item
         name="home"
         active={activeItem === "home"}
@@ -30,7 +34,7 @@ const MenuBar = () => {
           active={activeItem === "register"}
           onClick={handleItemClick}
           as={Link}
-          to="/register"
+          to="/registers"
         />
       </Menu.Menu>
     </Menu>
